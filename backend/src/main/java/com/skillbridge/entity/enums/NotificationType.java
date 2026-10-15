@@ -1,0 +1,12 @@
+package com.skillbridge.entity.enums;
+
+public enum NotificationType {
+    INVITATION_RECEIVED,
+    INVITATION_ACCEPTED,
+    INVITATION_REJECTED,
+    TASK_ASSIGNED,
+    TASK_STATUS_CHANGED,
+    TEAM_MEMBER_JOINED,
+    TEAM_MEMBER_REMOVED,
+    SYSTEM_ALERT
+}
