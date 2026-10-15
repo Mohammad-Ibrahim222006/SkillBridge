@@ -72,12 +72,14 @@ public class SecurityConfig {
         
         List<String> origins = Arrays.stream(allowedOrigins.split(","))
                 .map(String::trim)
+                .map(s -> s.endsWith("/") ? s.substring(0, s.length() - 1) : s)
                 .filter(s -> !s.isEmpty())
                 .collect(Collectors.toList());
         
         List<String> originPatterns = new java.util.ArrayList<>(Arrays.asList(
                 "http://localhost:*",
                 "http://127.0.0.1:*",
+                "https://skill-bridge-phi-one.vercel.app",
                 "https://*.vercel.app",
                 "https://*.onrender.com"
         ));
