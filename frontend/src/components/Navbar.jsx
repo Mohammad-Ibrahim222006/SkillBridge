@@ -74,61 +74,70 @@ const Navbar = ({ onToggleSidebar }) => {
 
   return (
     <header style={{
-      height: '68px',
-      backgroundColor: 'var(--bg-surface)',
-      borderBottom: '1px solid var(--border)',
+      height: '72px',
+      background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.9))',
+      backdropFilter: 'blur(12px)',
+      borderBottom: '1px solid rgba(226, 232, 240, 0.85)',
+      boxShadow: '0 8px 24px -4px rgba(15, 23, 42, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.95)',
       position: 'sticky',
       top: 0,
       zIndex: 100,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '0 1.5rem',
+      padding: '0 2rem',
     }}>
       {/* Brand & Mobile Toggle */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
         {isAuthenticated && (
           <button
             onClick={onToggleSidebar}
             style={{
-              padding: '0.5rem',
-              color: 'var(--slate-600)',
+              padding: '0.55rem',
+              color: 'var(--slate-700)',
               borderRadius: 'var(--radius-sm)',
               display: 'flex',
               alignItems: 'center',
+              boxShadow: 'var(--clay-pill-shadow)',
+              background: '#ffffff',
+              border: '1px solid var(--border-clay)',
+              transition: 'var(--morph-transition)',
             }}
             title="Toggle Menu"
           >
-            <Menu size={22} />
+            <Menu size={20} />
           </button>
         )}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{
-            width: '36px',
-            height: '36px',
-            borderRadius: '10px',
-            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            width: '40px',
+            height: '40px',
+            borderRadius: '14px',
+            background: 'var(--primary-gradient)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
-            boxShadow: '0 4px 10px rgb(79 70 229 / 0.3)'
+            boxShadow: '0 8px 16px -2px rgba(79, 70 229, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(30, 27, 75, 0.4)',
+            border: '1px solid rgba(255, 255, 255, 0.3)',
           }}>
-            <Sparkles size={20} />
+            <Sparkles size={22} />
           </div>
           <div>
-            <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--slate-900)', letterSpacing: '-0.025em' }}>
+            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--slate-900)', letterSpacing: '-0.03em' }}>
               SkillBridge
             </span>
             <span style={{
-              marginLeft: '0.35rem',
-              fontSize: '0.65rem',
-              fontWeight: 700,
-              background: 'var(--primary-light)',
+              marginLeft: '0.45rem',
+              fontSize: '0.675rem',
+              fontWeight: 800,
+              background: 'linear-gradient(135deg, #eef2ff, #e0e7ff)',
               color: 'var(--primary)',
-              padding: '0.15rem 0.4rem',
-              borderRadius: '4px',
-              textTransform: 'uppercase'
+              padding: '0.2rem 0.5rem',
+              borderRadius: '9999px',
+              textTransform: 'uppercase',
+              boxShadow: 'var(--clay-badge-shadow)',
+              border: '1px solid var(--primary-border)',
             }}>
               Core
             </span>
@@ -161,23 +170,26 @@ const Navbar = ({ onToggleSidebar }) => {
                 onClick={handleOpenNotifications}
                 style={{
                   position: 'relative',
-                  padding: '0.5rem',
-                  borderRadius: 'var(--radius-full)',
-                  color: showNotifications ? 'var(--primary)' : 'var(--slate-600)',
-                  backgroundColor: showNotifications ? 'var(--primary-light)' : 'var(--slate-100)',
-                  transition: 'all 0.15s ease',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: 'var(--radius-sm)',
+                  color: showNotifications ? 'var(--primary)' : 'var(--slate-700)',
+                  background: showNotifications ? 'linear-gradient(135deg, #eef2ff, #e0e7ff)' : '#ffffff',
+                  boxShadow: 'var(--clay-pill-shadow)',
+                  border: '1px solid var(--border-clay)',
+                  transition: 'var(--morph-transition)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}
                 title="Notifications"
               >
-                <Bell size={20} />
+                <Bell size={19} />
                 {unreadCount > 0 && (
                   <span style={{
                     position: 'absolute',
-                    top: '-2px',
-                    right: '-2px',
+                    top: '-3px',
+                    right: '-3px',
                     minWidth: '18px',
                     height: '18px',
                     padding: '0 4px',
@@ -185,11 +197,12 @@ const Navbar = ({ onToggleSidebar }) => {
                     color: 'white',
                     borderRadius: '10px',
                     fontSize: '0.675rem',
-                    fontWeight: 700,
+                    fontWeight: 800,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    border: '2px solid white'
+                    border: '2px solid white',
+                    boxShadow: '0 2px 6px rgba(244, 63, 94, 0.4)'
                   }}>
                     {unreadCount}
                   </span>
@@ -201,14 +214,15 @@ const Navbar = ({ onToggleSidebar }) => {
                 <div style={{
                   position: 'absolute',
                   right: 0,
-                  top: '115%',
-                  width: '340px',
-                  backgroundColor: 'white',
+                  top: '125%',
+                  width: '360px',
+                  backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-xl)',
-                  border: '1px solid var(--border)',
+                  boxShadow: 'var(--clay-card-shadow)',
+                  border: '1.5px solid var(--border-clay)',
                   zIndex: 200,
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  animation: 'modalMorph 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}>
                   <div style={{
                     padding: '0.875rem 1rem',
@@ -282,32 +296,35 @@ const Navbar = ({ onToggleSidebar }) => {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.35rem 0.65rem',
+                  gap: '0.65rem',
+                  padding: '0.4rem 0.85rem 0.4rem 0.5rem',
                   borderRadius: 'var(--radius-full)',
-                  backgroundColor: 'var(--slate-100)',
-                  transition: 'background 0.15s ease'
+                  background: 'linear-gradient(145deg, #ffffff, #f1f5f9)',
+                  boxShadow: 'var(--clay-pill-shadow)',
+                  border: '1.5px solid var(--border-clay)',
+                  transition: 'var(--morph-transition)'
                 }}
               >
                 <div style={{
-                  width: '30px',
-                  height: '30px',
+                  width: '32px',
+                  height: '32px',
                   borderRadius: '50%',
-                  backgroundColor: 'var(--primary)',
+                  background: 'var(--primary-gradient)',
                   color: 'white',
-                  fontWeight: 700,
-                  fontSize: '0.85rem',
+                  fontWeight: 800,
+                  fontSize: '0.875rem',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  boxShadow: '0 4px 10px rgba(79, 70 229, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5)'
                 }}>
                   {user.fullName ? user.fullName.charAt(0).toUpperCase() : 'U'}
                 </div>
                 <div style={{ textAlign: 'left', lineHeight: 1.2 }}>
-                  <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--slate-900)' }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--slate-900)', letterSpacing: '-0.01em' }}>
                     {user.fullName || 'Student'}
                   </div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                     {isAdmin ? 'Administrator' : 'Student'}
                   </div>
                 </div>
@@ -318,14 +335,15 @@ const Navbar = ({ onToggleSidebar }) => {
                 <div style={{
                   position: 'absolute',
                   right: 0,
-                  top: '115%',
-                  width: '210px',
-                  backgroundColor: 'white',
+                  top: '125%',
+                  width: '220px',
+                  backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--shadow-xl)',
-                  border: '1px solid var(--border)',
+                  boxShadow: 'var(--clay-card-shadow)',
+                  border: '1.5px solid var(--border-clay)',
                   zIndex: 200,
-                  padding: '0.5rem 0'
+                  padding: '0.65rem 0',
+                  animation: 'modalMorph 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}>
                   <Link
                     to="/profile"

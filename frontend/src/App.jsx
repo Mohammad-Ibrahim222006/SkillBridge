@@ -95,9 +95,9 @@ const AppLayout = () => {
         <main
           style={{
             flex: 1,
-            marginLeft: isAuthenticated && !isPublicPage && isDesktop && sidebarOpen ? '260px' : 0,
-            transition: 'margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-            minHeight: 'calc(100vh - 68px)',
+            marginLeft: isAuthenticated && !isPublicPage && isDesktop && sidebarOpen ? '270px' : 0,
+            transition: 'margin-left 0.28s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            minHeight: 'calc(100vh - 72px)',
             display: 'flex',
             flexDirection: 'column',
           }}

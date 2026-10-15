@@ -55,31 +55,31 @@ const Sidebar = ({ isOpen, onClose }) => {
       )}
 
       <aside style={{
-        width: '260px',
-        backgroundColor: 'var(--bg-surface)',
-        borderRight: '1px solid var(--border)',
+        width: '270px',
+        background: 'linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%)',
+        borderRight: '1.5px solid rgba(226, 232, 240, 0.85)',
         display: 'flex',
         flexDirection: 'column',
         position: 'fixed',
-        top: '68px',
+        top: '72px',
         bottom: 0,
-        left: isOpen ? 0 : '-270px',
+        left: isOpen ? 0 : '-280px',
         zIndex: 999,
-        transition: 'left 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-        boxShadow: isOpen ? 'var(--shadow-lg)' : 'none',
+        transition: 'left 0.28s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        boxShadow: isOpen ? 'var(--clay-card-shadow)' : '4px 0 20px rgba(15, 23, 42, 0.04)',
         overflowY: 'auto',
       }}>
         <div style={{
-          padding: '1.25rem 1rem 0.5rem',
+          padding: '1.35rem 1.25rem 0.65rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
           <span style={{
             fontSize: '0.75rem',
-            fontWeight: 700,
+            fontWeight: 800,
             textTransform: 'uppercase',
-            letterSpacing: '0.05em',
+            letterSpacing: '0.06em',
             color: 'var(--slate-400)'
           }}>
             Platform Navigation
@@ -87,17 +87,20 @@ const Sidebar = ({ isOpen, onClose }) => {
           <button
             onClick={onClose}
             style={{
-              padding: '0.25rem',
+              padding: '0.35rem',
               color: 'var(--slate-500)',
+              borderRadius: 'var(--radius-xs)',
               display: 'flex',
               alignItems: 'center',
+              boxShadow: 'var(--clay-pill-shadow)',
+              background: '#ffffff',
             }}
           >
-            <X size={18} />
+            <X size={16} />
           </button>
         </div>
 
-        <nav style={{ padding: '0.5rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+        <nav style={{ padding: '0.65rem 0.85rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -109,20 +112,25 @@ const Sidebar = ({ isOpen, onClose }) => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.75rem',
-                  padding: '0.625rem 0.875rem',
-                  borderRadius: 'var(--radius-md)',
+                  padding: '0.7rem 1rem',
+                  borderRadius: 'var(--radius-sm)',
                   fontSize: '0.875rem',
-                  fontWeight: isActive ? 700 : 500,
+                  fontWeight: isActive ? 800 : 600,
                   color: isActive
-                    ? item.admin ? '#b91c1c' : 'var(--primary)'
-                    : item.admin ? '#dc2626' : 'var(--slate-700)',
-                  backgroundColor: isActive
-                    ? item.admin ? 'var(--danger-light)' : 'var(--primary-light)'
+                    ? item.admin ? '#e11d48' : 'var(--primary)'
+                    : item.admin ? '#f43f5e' : 'var(--slate-700)',
+                  background: isActive
+                    ? item.admin ? 'linear-gradient(135deg, #fff1f2, #ffe4e6)' : 'linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%)'
                     : 'transparent',
-                  transition: 'all var(--transition-fast)'
+                  border: isActive
+                    ? item.admin ? '1.5px solid #fecdd3' : '1.5px solid var(--primary-border)'
+                    : '1.5px solid transparent',
+                  boxShadow: isActive ? 'var(--clay-pill-shadow)' : 'none',
+                  transform: isActive ? 'translateX(4px)' : 'none',
+                  transition: 'var(--morph-transition)'
                 })}
               >
-                <Icon size={18} />
+                <Icon size={19} />
                 <span>{item.label}</span>
               </NavLink>
             );
@@ -130,21 +138,22 @@ const Sidebar = ({ isOpen, onClose }) => {
         </nav>
 
         {/* Bottom helper card */}
-        <div style={{ marginTop: 'auto', padding: '1rem' }}>
+        <div style={{ marginTop: 'auto', padding: '1.25rem' }}>
           <div style={{
-            background: 'linear-gradient(135deg, #f8fafc, #eef2ff)',
-            border: '1px solid var(--primary-border)',
+            background: 'linear-gradient(150deg, #ffffff, #f1f5f9)',
+            border: '1.5px solid var(--border-clay)',
             borderRadius: 'var(--radius-md)',
-            padding: '1rem',
+            padding: '1.15rem',
+            boxShadow: 'var(--clay-card-shadow)'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.35rem' }}>
-              <Target size={16} color="var(--primary)" />
-              <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--slate-900)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '0.4rem' }}>
+              <Target size={18} color="var(--primary)" />
+              <span style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--slate-900)' }}>
                 Skill Gap Engine
               </span>
             </div>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.4 }}>
-              Compare your proficiency with any project requirements to generate custom learning roadmaps.
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.45, fontWeight: 500 }}>
+              Compare your proficiency with project requirements to generate custom learning roadmaps.
             </p>
           </div>
         </div>
