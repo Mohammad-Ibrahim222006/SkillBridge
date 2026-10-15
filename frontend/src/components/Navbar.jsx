@@ -7,12 +7,13 @@ import {
   Bell,
   LogOut,
   User as UserIcon,
-  FolderGit2,
   Menu,
   X,
-  CheckCircle2,
   ShieldCheck,
-  ChevronDown
+  ChevronDown,
+  Compass,
+  FolderGit2,
+  Users
 } from 'lucide-react';
 
 const Navbar = ({ onToggleSidebar }) => {
@@ -21,6 +22,7 @@ const Navbar = ({ onToggleSidebar }) => {
   const [unreadCount, setUnreadCount] = useState(0);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showPublicMobileMenu, setShowPublicMobileMenu] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -73,41 +75,62 @@ const Navbar = ({ onToggleSidebar }) => {
   };
 
   return (
-    <header style={{
+    <header className="navbar-fixed" style={{
       height: '72px',
-      background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.9))',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid rgba(226, 232, 240, 0.85)',
-      boxShadow: '0 8px 24px -4px rgba(15, 23, 42, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.95)',
-      position: 'sticky',
+      position: 'fixed',
       top: 0,
-      zIndex: 100,
+      left: 0,
+      right: 0,
+      width: '100%',
+      zIndex: 1000,
+      backgroundColor: '#ffffff',
+      backdropFilter: 'none',
+      borderBottom: '1.5px solid var(--border)',
+      boxShadow: '0 4px 20px -2px rgba(5, 16, 59, 0.06)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '0 2rem',
     }}>
       {/* Brand & Mobile Toggle */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-        {isAuthenticated && (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        {isAuthenticated ? (
           <button
             onClick={onToggleSidebar}
             style={{
               padding: '0.55rem',
-              color: 'var(--slate-700)',
+              color: 'var(--slate-800)',
               borderRadius: 'var(--radius-sm)',
               display: 'flex',
               alignItems: 'center',
-              boxShadow: 'var(--clay-pill-shadow)',
+              boxShadow: 'var(--spatial-pill-shadow)',
               background: '#ffffff',
-              border: '1px solid var(--border-clay)',
+              border: '1px solid var(--border)',
               transition: 'var(--morph-transition)',
             }}
             title="Toggle Menu"
           >
             <Menu size={20} />
           </button>
+        ) : (
+          <button
+            onClick={() => setShowPublicMobileMenu(!showPublicMobileMenu)}
+            style={{
+              padding: '0.55rem',
+              color: 'var(--slate-800)',
+              borderRadius: 'var(--radius-sm)',
+              alignItems: 'center',
+              boxShadow: 'var(--spatial-pill-shadow)',
+              background: '#ffffff',
+              border: '1px solid var(--border)',
+              transition: 'var(--morph-transition)',
+            }}
+            className="mobile-toggle-btn"
+            title="Toggle Navigation"
+          >
+            {showPublicMobileMenu ? <X size={20} /> : <Menu size={20} />}
+          </button>
         )}
+
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{
             width: '40px',
@@ -118,25 +141,25 @@ const Navbar = ({ onToggleSidebar }) => {
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
-            boxShadow: '0 8px 16px -2px rgba(79, 70 229, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.5), inset 0 -2px 4px rgba(30, 27, 75, 0.4)',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 6px 16px -2px rgba(17, 53, 207, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.45)',
+            border: '1px solid rgba(255, 255, 255, 0.35)',
           }}>
             <Sparkles size={22} />
           </div>
           <div>
-            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--slate-900)', letterSpacing: '-0.03em' }}>
+            <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--palette-navy)', letterSpacing: '-0.03em' }}>
               SkillBridge
             </span>
             <span style={{
               marginLeft: '0.45rem',
               fontSize: '0.675rem',
               fontWeight: 800,
-              background: 'linear-gradient(135deg, #eef2ff, #e0e7ff)',
-              color: 'var(--primary)',
-              padding: '0.2rem 0.5rem',
+              background: 'linear-gradient(135deg, #eff5ff, #e0edff)',
+              color: 'var(--palette-cobalt)',
+              padding: '0.2rem 0.55rem',
               borderRadius: '9999px',
               textTransform: 'uppercase',
-              boxShadow: 'var(--clay-badge-shadow)',
+              boxShadow: 'var(--spatial-badge-shadow)',
               border: '1px solid var(--primary-border)',
             }}>
               Core
@@ -147,14 +170,14 @@ const Navbar = ({ onToggleSidebar }) => {
 
       {/* Center Links (when public) */}
       {!isAuthenticated && (
-        <nav style={{ display: 'flex', gap: '1.75rem', alignItems: 'center' }}>
-          <Link to="/projects" style={{ fontWeight: 600, color: 'var(--slate-600)', fontSize: '0.9rem' }}>
+        <nav className="navbar-links">
+          <Link to="/projects" style={{ fontWeight: 700, color: 'var(--slate-700)', fontSize: '0.9rem', transition: 'color 0.2s' }}>
             Explore Projects
           </Link>
-          <Link to="/students" style={{ fontWeight: 600, color: 'var(--slate-600)', fontSize: '0.9rem' }}>
+          <Link to="/students" style={{ fontWeight: 700, color: 'var(--slate-700)', fontSize: '0.9rem', transition: 'color 0.2s' }}>
             Discover Peers
           </Link>
-          <Link to="/skills" style={{ fontWeight: 600, color: 'var(--slate-600)', fontSize: '0.9rem' }}>
+          <Link to="/skills" style={{ fontWeight: 700, color: 'var(--slate-700)', fontSize: '0.9rem', transition: 'color 0.2s' }}>
             Skill Catalog
           </Link>
         </nav>
@@ -173,10 +196,10 @@ const Navbar = ({ onToggleSidebar }) => {
                   width: '40px',
                   height: '40px',
                   borderRadius: 'var(--radius-sm)',
-                  color: showNotifications ? 'var(--primary)' : 'var(--slate-700)',
-                  background: showNotifications ? 'linear-gradient(135deg, #eef2ff, #e0e7ff)' : '#ffffff',
-                  boxShadow: 'var(--clay-pill-shadow)',
-                  border: '1px solid var(--border-clay)',
+                  color: showNotifications ? 'var(--palette-cobalt)' : 'var(--slate-700)',
+                  background: showNotifications ? 'linear-gradient(135deg, #eff5ff, #e0edff)' : '#ffffff',
+                  boxShadow: 'var(--spatial-pill-shadow)',
+                  border: '1px solid var(--border)',
                   transition: 'var(--morph-transition)',
                   display: 'flex',
                   alignItems: 'center',
@@ -202,7 +225,7 @@ const Navbar = ({ onToggleSidebar }) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     border: '2px solid white',
-                    boxShadow: '0 2px 6px rgba(244, 63, 94, 0.4)'
+                    boxShadow: '0 2px 6px rgba(225, 29, 72, 0.4)'
                   }}>
                     {unreadCount}
                   </span>
@@ -218,9 +241,9 @@ const Navbar = ({ onToggleSidebar }) => {
                   width: '360px',
                   backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--clay-card-shadow)',
-                  border: '1.5px solid var(--border-clay)',
-                  zIndex: 200,
+                  boxShadow: 'var(--spatial-card-shadow)',
+                  border: '1.5px solid var(--border)',
+                  zIndex: 1200,
                   overflow: 'hidden',
                   animation: 'modalMorph 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}>
@@ -232,11 +255,11 @@ const Navbar = ({ onToggleSidebar }) => {
                     justifyContent: 'space-between',
                     background: 'var(--slate-50)'
                   }}>
-                    <span style={{ fontWeight: 700, fontSize: '0.875rem' }}>Notifications</span>
+                    <span style={{ fontWeight: 800, fontSize: '0.875rem', color: 'var(--palette-navy)' }}>Notifications</span>
                     {unreadCount > 0 && (
                       <button
                         onClick={handleMarkAllRead}
-                        style={{ fontSize: '0.75rem', color: 'var(--primary)', fontWeight: 600 }}
+                        style={{ fontSize: '0.75rem', color: 'var(--palette-cobalt)', fontWeight: 700 }}
                       >
                         Mark all read
                       </button>
@@ -263,7 +286,7 @@ const Navbar = ({ onToggleSidebar }) => {
                             fontSize: '0.825rem'
                           }}
                         >
-                          <div style={{ fontWeight: 600, color: 'var(--slate-900)' }}>{n.title}</div>
+                          <div style={{ fontWeight: 700, color: 'var(--slate-900)' }}>{n.title}</div>
                           <div style={{ color: 'var(--text-muted)', marginTop: '2px' }}>{n.message}</div>
                         </div>
                       ))
@@ -278,8 +301,8 @@ const Navbar = ({ onToggleSidebar }) => {
                       padding: '0.625rem',
                       background: 'var(--slate-50)',
                       fontSize: '0.75rem',
-                      fontWeight: 600,
-                      color: 'var(--primary)',
+                      fontWeight: 700,
+                      color: 'var(--palette-cobalt)',
                       borderTop: '1px solid var(--border)'
                     }}
                   >
@@ -299,9 +322,9 @@ const Navbar = ({ onToggleSidebar }) => {
                   gap: '0.65rem',
                   padding: '0.4rem 0.85rem 0.4rem 0.5rem',
                   borderRadius: 'var(--radius-full)',
-                  background: 'linear-gradient(145deg, #ffffff, #f1f5f9)',
-                  boxShadow: 'var(--clay-pill-shadow)',
-                  border: '1.5px solid var(--border-clay)',
+                  background: 'linear-gradient(145deg, #ffffff, #f0f5fc)',
+                  boxShadow: 'var(--spatial-pill-shadow)',
+                  border: '1.5px solid var(--border)',
                   transition: 'var(--morph-transition)'
                 }}
               >
@@ -316,12 +339,12 @@ const Navbar = ({ onToggleSidebar }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 4px 10px rgba(79, 70 229, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5)'
+                  boxShadow: '0 4px 10px rgba(17, 53, 207, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.5)'
                 }}>
                   {user.fullName ? user.fullName.charAt(0).toUpperCase() : 'U'}
                 </div>
-                <div style={{ textAlign: 'left', lineHeight: 1.2 }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--slate-900)', letterSpacing: '-0.01em' }}>
+                <div className="navbar-user-text" style={{ textAlign: 'left', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--palette-navy)', letterSpacing: '-0.01em' }}>
                     {user.fullName || 'Student'}
                   </div>
                   <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>
@@ -339,9 +362,9 @@ const Navbar = ({ onToggleSidebar }) => {
                   width: '220px',
                   backgroundColor: '#ffffff',
                   borderRadius: 'var(--radius-lg)',
-                  boxShadow: 'var(--clay-card-shadow)',
-                  border: '1.5px solid var(--border-clay)',
-                  zIndex: 200,
+                  boxShadow: 'var(--spatial-card-shadow)',
+                  border: '1.5px solid var(--border)',
+                  zIndex: 1200,
                   padding: '0.65rem 0',
                   animation: 'modalMorph 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)'
                 }}>
@@ -354,8 +377,8 @@ const Navbar = ({ onToggleSidebar }) => {
                       gap: '0.625rem',
                       padding: '0.625rem 1rem',
                       fontSize: '0.85rem',
-                      color: 'var(--slate-700)',
-                      fontWeight: 500
+                      color: 'var(--slate-800)',
+                      fontWeight: 600
                     }}
                   >
                     <UserIcon size={16} /> My Profile
@@ -371,8 +394,8 @@ const Navbar = ({ onToggleSidebar }) => {
                         gap: '0.625rem',
                         padding: '0.625rem 1rem',
                         fontSize: '0.85rem',
-                        color: 'var(--primary)',
-                        fontWeight: 600
+                        color: 'var(--palette-cobalt)',
+                        fontWeight: 700
                       }}
                     >
                       <ShieldCheck size={16} /> Admin Console
@@ -391,7 +414,7 @@ const Navbar = ({ onToggleSidebar }) => {
                       padding: '0.625rem 1rem',
                       fontSize: '0.85rem',
                       color: 'var(--danger)',
-                      fontWeight: 600,
+                      fontWeight: 700,
                       textAlign: 'left'
                     }}
                   >
@@ -412,6 +435,66 @@ const Navbar = ({ onToggleSidebar }) => {
           </div>
         )}
       </div>
+
+      {/* Public Mobile Dropdown Menu */}
+      {!isAuthenticated && showPublicMobileMenu && (
+        <div style={{
+          position: 'absolute',
+          top: '72px',
+          left: 0,
+          right: 0,
+          backgroundColor: '#ffffff',
+          borderBottom: '2px solid var(--border)',
+          boxShadow: 'var(--spatial-card-shadow)',
+          padding: '1.25rem 1.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          zIndex: 999,
+          animation: 'fadeIn 0.2s ease-out'
+        }}>
+          <Link
+            to="/projects"
+            onClick={() => setShowPublicMobileMenu(false)}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 700, color: 'var(--slate-800)', padding: '0.5rem 0' }}
+          >
+            <FolderGit2 size={18} color="var(--palette-cobalt)" /> Explore Projects
+          </Link>
+          <Link
+            to="/students"
+            onClick={() => setShowPublicMobileMenu(false)}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 700, color: 'var(--slate-800)', padding: '0.5rem 0' }}
+          >
+            <Users size={18} color="var(--palette-cobalt)" /> Discover Peers
+          </Link>
+          <Link
+            to="/skills"
+            onClick={() => setShowPublicMobileMenu(false)}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontWeight: 700, color: 'var(--slate-800)', padding: '0.5rem 0' }}
+          >
+            <Compass size={18} color="var(--palette-cobalt)" /> Skill Catalog
+          </Link>
+          <div style={{ height: '1px', backgroundColor: 'var(--border)', margin: '0.25rem 0' }} />
+          <div style={{ display: 'flex', gap: '0.75rem' }}>
+            <Link
+              to="/login"
+              onClick={() => setShowPublicMobileMenu(false)}
+              className="btn btn-outline btn-sm"
+              style={{ flex: 1, textAlign: 'center' }}
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/register"
+              onClick={() => setShowPublicMobileMenu(false)}
+              className="btn btn-primary btn-sm"
+              style={{ flex: 1, textAlign: 'center' }}
+            >
+              Register Free
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

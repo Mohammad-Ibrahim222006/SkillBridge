@@ -87,7 +87,7 @@ const AppLayout = () => {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--bg-main)' }}>
       <Navbar onToggleSidebar={toggleSidebar} />
 
-      <div style={{ display: 'flex', flex: 1, position: 'relative' }}>
+      <div style={{ display: 'flex', flex: 1, position: 'relative', marginTop: '72px', width: '100%', overflowX: 'hidden' }}>
         {isAuthenticated && !isPublicPage && (
           <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         )}

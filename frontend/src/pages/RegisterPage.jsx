@@ -45,7 +45,7 @@ const RegisterPage = () => {
 
   return (
     <div style={{
-      minHeight: 'calc(100vh - 68px)',
+      minHeight: 'calc(100vh - 72px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -55,28 +55,29 @@ const RegisterPage = () => {
       <div style={{
         maxWidth: '460px',
         width: '100%',
-        backgroundColor: 'var(--bg-surface)',
+        backgroundColor: '#ffffff',
         borderRadius: 'var(--radius-lg)',
-        border: '1px solid var(--border)',
-        boxShadow: 'var(--shadow-lg)',
+        border: '1.5px solid var(--border)',
+        boxShadow: 'var(--spatial-card-shadow)',
         padding: '2.5rem 2rem'
       }}>
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div style={{
-            width: '44px',
-            height: '44px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            width: '46px',
+            height: '46px',
+            borderRadius: '14px',
+            background: 'var(--primary-gradient)',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: 'white',
             marginBottom: '1rem',
-            boxShadow: '0 4px 12px rgb(79 70 229 / 0.3)'
+            boxShadow: '0 6px 16px -2px rgba(17, 53, 207, 0.4), inset 0 2px 3px rgba(255, 255, 255, 0.45)',
+            border: '1px solid rgba(255, 255, 255, 0.35)'
           }}>
             <Sparkles size={22} />
           </div>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--slate-900)', letterSpacing: '-0.02em' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--palette-navy)', letterSpacing: '-0.02em' }}>
             Create Student Profile
           </h2>
           <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>

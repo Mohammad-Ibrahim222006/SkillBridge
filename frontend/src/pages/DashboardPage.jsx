@@ -87,40 +87,63 @@ const DashboardPage = () => {
     <div className="page-wrapper">
       {/* Welcome Banner */}
       <div style={{
-        background: 'linear-gradient(135deg, #4f46e5 0%, #3730a3 100%)',
+        background: 'linear-gradient(135deg, var(--palette-navy) 0%, #0c268a 55%, var(--palette-cobalt) 100%)',
         color: 'white',
         borderRadius: 'var(--radius-lg)',
-        padding: '2rem 2.5rem',
+        padding: '2.25rem 2.5rem',
         marginBottom: '2rem',
-        boxShadow: 'var(--shadow-md)',
+        boxShadow: '0 20px 40px -10px rgba(5, 16, 59, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.25)',
+        border: '1.5px solid rgba(166, 206, 253, 0.3)',
         position: 'relative',
         overflow: 'hidden'
       }}>
         <div style={{ maxWidth: '640px', position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(255, 255, 255, 0.15)', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.75rem' }}>
-            <Sparkles size={14} /> Student Workspace
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            background: 'rgba(255, 255, 255, 0.12)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(166, 206, 253, 0.35)',
+            padding: '0.3rem 0.85rem',
+            borderRadius: 'var(--radius-full)',
+            fontSize: '0.8rem',
+            fontWeight: 700,
+            color: 'var(--palette-ice)',
+            marginBottom: '0.85rem',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
+          }}>
+            <Sparkles size={14} color="var(--palette-ice)" /> Student Workspace
           </div>
-          <h1 style={{ fontSize: '1.875rem', fontWeight: 800, letterSpacing: '-0.025em', marginBottom: '0.5rem' }}>
+          <h1 style={{ fontSize: '1.95rem', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '0.5rem', color: '#ffffff' }}>
             Welcome back, {user?.fullName || 'Student'}!
           </h1>
-          <p style={{ color: '#c7d2fe', fontSize: '0.925rem', lineHeight: 1.5, marginBottom: '1.5rem' }}>
+          <p style={{ color: 'var(--palette-ice)', fontSize: '0.95rem', lineHeight: 1.55, marginBottom: '1.5rem', opacity: 0.95 }}>
             {createdProjects > 0 || joinedProjects > 0
               ? `You are collaborating on ${createdProjects + joinedProjects} project(s) with ${assignedTasks} assigned task(s).`
               : 'Add your technical skills and discover projects that match your capabilities or help you learn.'}
           </p>
 
           {/* Profile completeness gauge */}
-          <div style={{ background: 'rgba(0, 0, 0, 0.2)', padding: '0.875rem 1.25rem', borderRadius: 'var(--radius-md)', maxWidth: '420px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.825rem', fontWeight: 600, marginBottom: '0.35rem' }}>
+          <div style={{
+            background: 'rgba(5, 16, 59, 0.4)',
+            backdropFilter: 'blur(8px)',
+            padding: '0.95rem 1.35rem',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid rgba(166, 206, 253, 0.25)',
+            maxWidth: '440px',
+            boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.3)'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.825rem', fontWeight: 700, marginBottom: '0.45rem', color: '#ffffff' }}>
               <span>Profile Completeness</span>
-              <span>{profileCompleteness}%</span>
+              <span style={{ color: 'var(--palette-ice)' }}>{profileCompleteness}%</span>
             </div>
-            <div className="progress-bar-container" style={{ height: '6px', background: 'rgba(255, 255, 255, 0.2)' }}>
+            <div className="progress-bar-container" style={{ height: '7px', background: 'rgba(255, 255, 255, 0.2)', borderRadius: '9999px', overflow: 'hidden' }}>
               <div className="progress-bar-fill progress-success" style={{ width: `${profileCompleteness}%` }} />
             </div>
             {profileCompleteness < 100 && (
-              <div style={{ marginTop: '0.5rem', fontSize: '0.75rem', color: '#e0e7ff' }}>
-                <Link to="/profile" style={{ textDecoration: 'underline', fontWeight: 600 }}>
+              <div style={{ marginTop: '0.55rem', fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.85)' }}>
+                <Link to="/profile" style={{ textDecoration: 'underline', fontWeight: 700, color: 'var(--palette-ice)' }}>
                   Complete your bio, links, and skills
                 </Link>{' '}
                 to improve team matching.

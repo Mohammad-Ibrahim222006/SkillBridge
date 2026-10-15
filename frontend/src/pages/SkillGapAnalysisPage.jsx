@@ -160,7 +160,7 @@ const SkillGapAnalysisPage = () => {
       ) : (
         <>
           {/* Analysis KPI Summary */}
-          <div className="card" style={{ padding: '2rem', marginBottom: '2rem', background: 'linear-gradient(135deg, #ffffff, #f8fafc)' }}>
+          <div className="card" style={{ padding: '2rem', marginBottom: '2rem', background: 'var(--bg-glass-card)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '0.5rem' }}>

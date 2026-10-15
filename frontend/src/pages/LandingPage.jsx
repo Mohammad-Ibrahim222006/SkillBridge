@@ -48,10 +48,10 @@ const LandingPage = () => {
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Hero Section */}
       <section style={{
-        background: 'radial-gradient(ellipse at top, #f0f4ff 0%, #f8fafc 70%)',
+        background: 'radial-gradient(ellipse at top, #eff5ff 0%, #edf4fd 50%, #f2f6fc 100%)',
         padding: '5rem 1.5rem 4rem',
         textAlign: 'center',
-        borderBottom: '1px solid var(--border)'
+        borderBottom: '1.5px solid var(--border)'
       }}>
         <div style={{ maxWidth: '960px', margin: '0 auto' }}>
           <div style={{
@@ -59,12 +59,13 @@ const LandingPage = () => {
             alignItems: 'center',
             gap: '0.5rem',
             padding: '0.4rem 1rem',
-            background: 'var(--primary-light)',
-            color: 'var(--primary)',
+            background: 'linear-gradient(135deg, #eff5ff, #e0edff)',
+            color: 'var(--palette-cobalt)',
             borderRadius: 'var(--radius-full)',
             fontSize: '0.85rem',
-            fontWeight: 700,
+            fontWeight: 800,
             marginBottom: '1.75rem',
+            boxShadow: 'var(--spatial-badge-shadow)',
             border: '1px solid var(--primary-border)'
           }}>
             <Sparkles size={16} /> Intelligent Student Collaboration & Skill Platform
@@ -73,14 +74,14 @@ const LandingPage = () => {
           <h1 style={{
             fontSize: 'clamp(2.25rem, 5vw, 3.75rem)',
             fontWeight: 800,
-            color: 'var(--slate-900)',
+            color: 'var(--palette-navy)',
             lineHeight: 1.15,
             letterSpacing: '-0.03em',
             marginBottom: '1.5rem'
           }}>
             Bridge Your Skills. Build Real Projects. <br />
             <span style={{
-              background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+              background: 'linear-gradient(135deg, var(--palette-cobalt) 0%, #355beb 50%, var(--palette-periwinkle) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
             }}>
@@ -322,7 +323,7 @@ const LandingPage = () => {
         <div style={{ maxWidth: '1240px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'white', fontWeight: 800, fontSize: '1.15rem' }}>
-              <Sparkles size={18} color="#818cf8" /> SkillBridge
+              <Sparkles size={18} color="var(--palette-periwinkle)" /> SkillBridge
             </div>
             <p style={{ fontSize: '0.8rem', marginTop: '0.35rem', color: 'var(--slate-400)' }}>
               Full-Stack Student Skill, Project and Collaboration Platform.
